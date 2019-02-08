@@ -1,0 +1,12 @@
+<form [formGroup]="formCadastro">
+
+  <cmail-form-group [campo]="formCadastro.get('nome')">
+      <input placeholder="Nome" formControlName="nome" cmailInput>
+  </cmail-form-group>
+
+
+  <cmail-form-group>
+      <input placeholder="Email" formControlName="email" cmailInput>
+  </cmail-form-group>
+
+</form>

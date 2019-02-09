@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'cmail-form-group',
@@ -9,7 +10,7 @@ export class CmailFormGroupComponent implements OnInit {
 
   elemento: ElementRef;
   valorDaLabel: string;
-  @Input() campo;
+  @Input() campo: FormGroup;
  
   constructor(elemento: ElementRef) { 
 
@@ -18,9 +19,9 @@ export class CmailFormGroupComponent implements OnInit {
 
   }
 
-  ngOnInit() {//roda depois que o elemento foi criado na tela
+  ngOnInit() { //roda depois que o elemento foi criado na tela
 
-    console.log('campo no cmail-form-group', this.campo)
+    console.log("teste", this.campo);
     const elementoInput = this.elemento.nativeElement.querySelector('input');
     this.valorDaLabel = elementoInput.getAttribute('placeholder');
     elementoInput.setAttribute('placeholder',' ');

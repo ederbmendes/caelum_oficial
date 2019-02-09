@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 
 @Component({
@@ -13,6 +13,7 @@ export class HeaderComponent{
 
     tituloPagina = 'E-mail box';
     private _ativaMenu = false;
+    @Input() titulo;    
 
     toggleMenu(){
         

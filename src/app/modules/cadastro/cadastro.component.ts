@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro',
@@ -13,8 +13,8 @@ export class CadastroComponent{
   constructor() { 
 
     this.formCadastro = new FormGroup({
-      nome: new FormControl('Dados inicia'),
-      email: new FormControl('email')
+      nome: new FormControl('Dados inicia', [Validators.required]),
+      email: new FormControl('email', [Validators.required])
     });
 
   }

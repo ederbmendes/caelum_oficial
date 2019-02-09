@@ -1,12 +1,20 @@
-<form [formGroup]="formCadastro">
+<form [formGroup]="formCadastro" (submit)="handleCadastroUsuario()">
 
   <cmail-form-group [campo]="formCadastro.get('nome')">
       <input placeholder="Nome" formControlName="nome" cmailInput>
   </cmail-form-group>
-
-
-  <cmail-form-group [campo]="formCadastro.get('email')">
-      <input placeholder="Email" formControlName="email" cmailInput>
+  <cmail-form-group [campo]="formCadastro.get('username')">
+      <input placeholder="Username" formControlName="username" cmailInput>
   </cmail-form-group>
+  <cmail-form-group [campo]="formCadastro.get('senha')">
+        <input placeholder="Senha" formControlName="senha" cmailInput>
+    </cmail-form-group>
+    <cmail-form-group [campo]="formCadastro.get('telefone')">
+            <input placeholder="Telefone" formControlName="telefone" cmailInput>
+    </cmail-form-group>
+    <cmail-form-group [campo]="formCadastro.get('avatar')">
+            <input placeholder="avatar" formControlName="avatar" cmailInput>
+    </cmail-form-group>   
 
+    <button type="submit">Enviar</button> 
 </form>

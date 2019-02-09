@@ -13,11 +13,27 @@ export class CadastroComponent{
   constructor() { 
 
     this.formCadastro = new FormGroup({
-      nome: new FormControl('Dados inicia', [Validators.required]),
-      email: new FormControl('email', [Validators.required])
+      nome: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required]),
+      senha: new FormControl('', [Validators.required]),
+      avatar: new FormControl('', [Validators.required]),
+      telefone: new FormControl('', [Validators.required])
     });
 
   }
 
+  handleCadastroUsuario(){
+    console.log('asdasd')
+    if(this.formCadastro.valid){
+      console.log('Manda para o banco de dados');
+    }
+    else{
+      const campos = this.formCadastro.controls;
+      Object.keys(campos).forEach(function(controlNameCampoAtual){
+          campos[controlNameCampoAtual].markAsTouched({onlySelf: true})
+      })
+    }
+
+  }
 
 }

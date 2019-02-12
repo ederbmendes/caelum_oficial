@@ -12,9 +12,12 @@
     <cmail-form-group [campo]="formCadastro.get('telefone')">
             <input placeholder="Telefone" formControlName="telefone" cmailInput>
     </cmail-form-group>
+
     <cmail-form-group [campo]="formCadastro.get('avatar')">
             <input placeholder="avatar" formControlName="avatar" cmailInput>
     </cmail-form-group>   
-
+    <img [src]="formCadastro.get('avatar').value" style="width: 50px; height: 50px">
+    <br>
+    <br>
     <button type="submit">Enviar</button> 
 </form>

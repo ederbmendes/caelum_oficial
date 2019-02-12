@@ -1,9 +1,13 @@
-
+{{ campo.errors | json }}
 <div class="cmailInputForm">
     <div [ngClass]="{ 'is-invalid' : campo.touched && campo.invalid }" class="mdl-textfield mdl-textfield--floating-label">
       <ng-content></ng-content>
-      <span class="mdl-textfield__error">Informar um email é obrigatório!</span>
-      <label class="mdl-textfield__label" for="para">{{valorDaLabel}}</label>
+      <span *ngIf="campo.errors && campo.errors.required" class="mdl-textfield__error">Campo obrigatório.</span>
+      <span *ngIf="campo.errors?.minlength" class="mdl-textfield__error">
+        Você deve informar pelo menos {{ campo.errors?.minlength.requiredLength }} caracteres!</span>
+      <span *ngIf="campo.errors?.pattern" class="mdl-textfield__error">
+        Campo de telefone invalido!</span>
+        <label class="mdl-textfield__label" for="para">{{valorDaLabel}}</label>
       <span class="mdl-textfield__formline"></span>
     </div>
   </div>

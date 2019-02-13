@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router'
 import { CadastroComponent } from './modules/cadastro/cadastro.component'
 import { InboxComponent } from './modules/inbox/inbox.component'
 import { LoginComponent } from './modules/login/login.component'
+import { NgModule } from '@angular/core';
 
 const rotas : Routes = [
     {path: '', component: LoginComponent},
@@ -12,4 +13,12 @@ const rotas : Routes = [
     {path: '**', redirectTo: ''}, //ou criar 404
 ];
 
-export const RouterModuloConfigurado = RouterModule.forRoot(rotas);
+@NgModule({
+    imports:[
+        RouterModule.forRoot(rotas)
+    ],
+    exports:[
+        RouterModule
+    ]
+})
+export class ModuloRoteamento{}

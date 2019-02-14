@@ -5,19 +5,19 @@ import { CmailFormInputDirective } from 'src/app/components/cmail-form-group/cma
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { cadastroRoutingModule } from './cadastro.routes';
+import { SharedThingsModule } from 'src/app/shared/shared-things.modules';
 
 @NgModule({
     declarations:[
-        CadastroComponent,
-        CmailFormGroupComponent,
-        CmailFormInputDirective
+        CadastroComponent
     ],
     imports:[
         CommonModule, //Ele que traz o ngif, for e os pipes do angular
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        cadastroRoutingModule,
+        SharedThingsModule
     ]
 
 })

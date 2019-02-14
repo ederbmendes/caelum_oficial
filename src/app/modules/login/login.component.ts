@@ -1,15 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
-  constructor() { }
+  login = {
+    email: '',
+    senha: '',
+  }
 
-  ngOnInit() {
+  handleRealizarLogin(evento: Event, formLogin:NgForm){
+
+    evento.preventDefault();
+
+    if (formLogin.invalid) return;
+    
+    console.log(this.login);
+  
+    this.login = {
+      email: '',
+      senha: '',
+    };
+
+    formLogin.reset();
+
   }
 
 }

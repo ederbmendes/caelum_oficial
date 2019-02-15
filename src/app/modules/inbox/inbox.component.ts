@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { EmailService } from './services/email.services';
 
 @Component({
   selector: 'app-inbox',
@@ -8,6 +9,8 @@ import { NgForm } from '@angular/forms';
 })
 
 export class InboxComponent{
+
+  constructor(private emailService: EmailService){}
 
   //ctrl+D - Refatoração
   private _newEmailForm = false;
@@ -30,13 +33,26 @@ export class InboxComponent{
     if (formEmail.invalid) return;
       this.emails.push(this.email);
     
-      this.email = {
-        destinatario: '',
-        assunto:'',
-        conteudo:''
-      };
+      const emailDTO = {
+        to: this.email.destinatario,
+        subject: this.email.assunto,
+        content: this.email.conteudo,
+      }
 
-      formEmail.reset();
+      this.emailService.enviarEmail(emailDTO)
+      .subscribe((dadosServer) => {
+          this.emails.push(this.email);
+
+          this.email = {
+            destinatario: '',
+            assunto:'',
+            conteudo:''
+          };
+    
+          formEmail.reset();
+
+      })
+
   }
 
   toggleNewFormEmail(){

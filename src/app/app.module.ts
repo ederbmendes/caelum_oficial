@@ -9,12 +9,14 @@ import { ModuloRoteamento } from './app.routes';
 import { AuthGuardGeral } from './shared/auth-guard-geral';
 import { EmailService } from './modules/inbox/services/email.services';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { filtrarPorAssuntoPipe } from './shared/filtratPorAssunto.pipe';
  
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    InboxComponent,
+    filtrarPorAssuntoPipe,
+    InboxComponent
   ],
   imports: [
     BrowserModule,

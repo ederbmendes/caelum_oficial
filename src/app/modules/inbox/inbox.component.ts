@@ -8,30 +8,45 @@ import { EmailService } from './services/email.services';
   styleUrls: ['./inbox.component.css']
 })
 
-export class InboxComponent{
+export class InboxComponent implements OnInit{
 
-  constructor(private emailService: EmailService){}
+  constructor(private emailService: EmailService){
+    
+  }
 
   //ctrl+D - Refatoração
   private _newEmailForm = false;
 
-  emails = [
-    {assunto:'Email 1', destinatario:'dest1', conteudo:'teste 1'},
-    {assunto:'Email 2', destinatario:'dest2', conteudo:'teste 2'}
-  ]
+  emails = []
 
   email = {
     destinatario: '',
     assunto:'',
-    conteudo:''
+    conteudo:'',
+    dataCriacao: ''
   };
+
+  ngOnInit(){
+
+    this.ListarEmails();
+
+  }
+
+  ListarEmails(){
+
+    this.emailService.listarEmail().subscribe((DadosSercice) => {
+      console.log('dados do completos', DadosSercice);
+      this.emails = DadosSercice;
+  
+      });
+    
+  }
 
   handleCriarEmail(evento : Event, formEmail : NgForm){
     
     evento.preventDefault();
 
     if (formEmail.invalid) return;
-      this.emails.push(this.email);
     
       const emailDTO = {
         to: this.email.destinatario,
@@ -41,18 +56,20 @@ export class InboxComponent{
 
       this.emailService.enviarEmail(emailDTO)
       .subscribe((dadosServer) => {
-          this.emails.push(this.email);
+
+          this.ListarEmails();
 
           this.email = {
             destinatario: '',
             assunto:'',
-            conteudo:''
+            conteudo:'',
+            dataCriacao: ''
           };
     
           formEmail.reset();
 
       })
-
+      
   }
 
   toggleNewFormEmail(){
